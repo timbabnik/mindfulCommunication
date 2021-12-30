@@ -3,14 +3,14 @@ import { Pressable, StyleSheet, Text, TouchableOpacity, View } from 'react-nativ
 import { MaterialIcons } from '@expo/vector-icons';
 import { AntDesign } from '@expo/vector-icons';
 
-const Task = ({taskText, onPress, color, descText}) => {
+const Task = ({taskText, onPress, color, descText, id}) => {
 
     const [clicked, setClicked] = useState(true);
 
     
 
     return (
-        <TouchableOpacity onPress={() => setClicked(!clicked)} style={{backgroundColor: "white", padding: 17, marginTop: 10, borderRadius: 10, flexDirection: "row", alignItems: "center", marginVertical: 10, justifyContent: "space-between"}}>
+        <TouchableOpacity key={id} onPress={() => setClicked(!clicked)} style={{backgroundColor: "white", padding: 17, marginTop: 10, borderRadius: 10, flexDirection: "row", alignItems: "center", marginVertical: 10, justifyContent: "space-between"}}>
             <View>
                 <View style={{flexDirection: "row", alignItems: "center"}}>
                     {

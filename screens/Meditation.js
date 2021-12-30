@@ -1,49 +1,60 @@
 import React, { useEffect, useState } from 'react'
-import { StyleSheet, Text, View, Animated } from 'react-native'
+import { StyleSheet, Text, View, Animated, Button, ScrollView, Image, FlatList, TouchableOpacity } from 'react-native'
 import { CountdownCircleTimer } from 'react-native-countdown-circle-timer'
+import Stressrelief from '../components/Stressrelief'
+import datafour from './datafour'
+import datathree from './datathree'
+import datatwo from './datatwo'
 
-const Meditation = () => {
+const Meditation = ({navigation}) => {
 
-    const [timer, setTimer] = useState(true);
-
-    
 
     return (
-        <View style={{padding: 20, flex: 1, backgroundColor: timer ? "lightblue" : "white"}}>
-            {
-                timer ? (
-                    <Text></Text>
-                ) : <Text>Meditation</Text>
-            }
-            
-            <View style={{alignItems: "center", justifyContent: "center", flex: 1}}>
-            {
-                timer ? (
-                    <View style={{alignItems: "center", backgroundColor: "lightblue", flex: 1, position: "absolute", top: 0, width: "100%", alignSelf: "center", height: "100%", justifyContent: "center"}}>
-                        <Text style={{fontSize: 30, marginBottom: 30}}>Breath in</Text>
-                        <CountdownCircleTimer
-                            isPlaying={timer}
-                            duration={5}
-                            onComplete={() => setTimer(false)}
-                            colors={[
-                            ['#004777', 0.4],
-                            ['#F7B801', 0.4],
-                            ['#A30000', 0.2],
-                            ]}
-                        >
-                            {({ remainingTime, animatedColor }) => (
-                            <Animated.Text style={{ color: animatedColor }}>
-                                {remainingTime}
-                            </Animated.Text>
-                            )}
-                        </CountdownCircleTimer>
-                    </View>
-                ) : null
-            }
+        <ScrollView style={{paddingVertical: 20, flex: 1, backgroundColor: "#2C4D37"}}>
+            <View>
+                <View style={{backgroundColor: "#029C88", width: 150, height: 50, alignItems: "center", justifyContent: "center", borderRadius: 10, marginLeft: 10, marginTop: 10}}>
+                    <Text style={{color: "#fff", fontSize: 20}}>Stress Relief</Text>
+                </View>
+                <View style={{marginTop: 10}}>
+                    <FlatList 
+                        horizontal
+                        data={datatwo}
+                        renderItem={({item}) => <TouchableOpacity onPress={() => navigation.navigate("Play")}><Stressrelief list={item} /></TouchableOpacity>}
+                        showsHorizontalScrollIndicator={false}
+                        style={{marginTop: 20}}
+                    />
+                </View>
             </View>
-
-           
-        </View>
+            <View style={{marginTop: 50}}>
+                <View style={{backgroundColor: "#029C88", width: 150, height: 50, alignItems: "center", justifyContent: "center", borderRadius: 10, marginLeft: 10}}>
+                    <Text style={{color: "#fff", fontSize: 20}}>Happiness</Text>
+                </View>
+                <View style={{marginTop: 10}}>
+                    <FlatList 
+                            horizontal
+                            data={datathree}
+                            renderItem={({item}) => <TouchableOpacity onPress={() => navigation.navigate("Play")}><Stressrelief list={item} /></TouchableOpacity>}
+                            showsHorizontalScrollIndicator={false}
+                            style={{marginTop: 20}}
+                    />
+                </View>
+            </View>
+            <View style={{marginTop: 50}}>
+                <View style={{backgroundColor: "#029C88", width: 150, height: 50, alignItems: "center", justifyContent: "center", borderRadius: 10, marginLeft: 10}}>
+                    <Text style={{color: "#fff", fontSize: 20}}>Deep Focus</Text>
+                </View>
+                <View style={{marginTop: 10}}>
+                    <FlatList 
+                                horizontal
+                                data={datafour}
+                                renderItem={({item}) => <TouchableOpacity onPress={() => navigation.navigate("Play")}><Stressrelief list={item} /></TouchableOpacity>}
+                                showsHorizontalScrollIndicator={false}
+                                style={{marginTop: 20}}
+                    />
+                </View>
+            </View>
+            <View style={{height: 120}} />
+        </ScrollView>
     )
 }
 

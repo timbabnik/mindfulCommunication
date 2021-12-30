@@ -10,7 +10,7 @@ const Login = ({navigation}) => {
     useEffect(() => {
         const unsubscribe = auth.onAuthStateChanged((authUser) => {
             if(authUser){
-                navigation.replace("Send");
+                navigation.replace("Groups");
             }
         });
 
